@@ -1,39 +1,28 @@
 import React, { Component } from 'react';
 import './App.css';
 import data from "./data.js";
+import Table from "./components/Table.js"
 
-const Table = ({ routes }) => {
-  console.log(routes);
+const App = () => {
+  const columns = [
+    { name: "Airline", property: "airline" },
+    { name: "Source Airport", property: "src" },
+    { name: "Destination Airport", property: "dest" },
+  ];
+  
+  const formatValue = (property, value) => {
+    
+  }
+  
   return (
-    <div>
-      <table>
-        <tbody>
-          {routes.map(route => <TableRow key={`${route.src}${route.dest}${route.airline}`} route={route}/>)}
-        </tbody>
-      </table>
-    </div>
-  );
-};
-
-const TableRow = ({ route }) => {
-  return (
-    <tr>
-      <td>{data.getAirlineById(route.airline)}</td>
-      <td>{data.getAirportByCode(route.src)}</td>
-      <td>{data.getAirportByCode(route.dest)}</td>
-    </tr>
-  );
-};
-
-const App = () => (
   <div className="app">
   <header className="header">
     <h1 className="title">Airline Routes</h1>
   </header>
   <section>
-    <Table routes={ data.routes }/>
+    <Table routes={ data.routes } className="routes-table" columns={columns} rows="" format=""/>
   </section>
 </div>
-);
+)};
 
 export default App;
