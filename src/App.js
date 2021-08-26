@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 import data from "./data.js";
 
-const Table = (props) => {
-  console.log(props.routes);
+const Table = ({ routes }) => {
+  console.log(routes);
   return (
     <div>
       <table>
         <tbody>
-          {props.routes.map(route => <TableRow key={`${route.src}${route.dest}${route.airline}`} route={route}/>)}
+          {routes.map(route => <TableRow key={`${route.src}${route.dest}${route.airline}`} route={route}/>)}
         </tbody>
       </table>
     </div>
@@ -18,9 +18,9 @@ const Table = (props) => {
 const TableRow = ({ route }) => {
   return (
     <tr>
-      <td>{route.airline}</td>
-      <td>{route.src}</td>
-      <td>{route.dest}</td>
+      <td>{data.getAirlineById(route.airline)}</td>
+      <td>{data.getAirportByCode(route.src)}</td>
+      <td>{data.getAirportByCode(route.dest)}</td>
     </tr>
   );
 };
