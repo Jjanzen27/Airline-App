@@ -20,12 +20,12 @@ const Table = ({ rows, columns, format, perPage=25 }) => {
   const previousPage = (event) => {
     event.preventDefault();
     setPage(page - 1);
-  }
+  };
 
   const nextPage = (event) => {
     event.preventDefault();
     setPage(page + 1);
-  }
+  };
 
   return (
     <div>
