@@ -53,11 +53,11 @@ const App = () => {
   };
   
   const selectAirline = (value) => {
-    setAirline(value);
+    value === "All airlines" ? setAirline("all") : setAirline(value);
   }
   
   const selectAirport = (value) => {
-    setAirport(value);
+    value === "All airports" ? setAirport("all") : setAirport(value);
   }
   
   return (
