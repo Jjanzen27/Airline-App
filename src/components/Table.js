@@ -1,9 +1,21 @@
-import React from "react";
-import data from "./../data.js";
+import React, { useState, useEffect } from "react";
 
-const Table = ({ routes, columns }) => {
+const Table = ({ rows, columns, format, perPage=25 }) => {
+  const [page, setPage] = useState(12);
+  
     
-  const headerValues = columns.map(c => <th key={c.name}>{c.name}</th>)
+  const headerValues = columns.map(c => <th key={c.name}>{c.name}</th>);
+  
+  const firstRowOnPage = () => {
+    return page * perPage;
+  };
+  
+  let start = firstRowOnPage();
+  let end = start + perPage;
+  
+  const currentRowsOnPage = () => {
+    return rows.slice(start, end);
+  };
 
   return (
     <div>
@@ -12,20 +24,11 @@ const Table = ({ routes, columns }) => {
           <tr>{headerValues}</tr>
         </thead>
         <tbody>
-          {routes.map(route => <TableRow key={`${route.src}${route.dest}${route.airline}`} route={route}/>)}
+          {currentRowsOnPage()}
         </tbody>
       </table>
+      <p>Showing {start+1}-{end+1} routes of {rows.length}</p>
     </div>
-  );
-};
-
-const TableRow = ({ route }) => {
-  return (
-    <tr>
-      <td>{data.getAirlineById(route.airline)}</td>
-      <td>{data.getAirportByCode(route.src)}</td>
-      <td>{data.getAirportByCode(route.dest)}</td>
-    </tr>
   );
 };
 
