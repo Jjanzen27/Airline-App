@@ -1403,4 +1403,15 @@ const getAirportByCode = (code) => {
   return airports.find(airport => airport.code === code).name;
 };
 
-export default {routes, airlines, airports, getAirlineById, getAirportByCode};
+const getIdByAirlineName = (name) => {
+  let al = airlines.find(airline => airline.name === name);
+  return al ? al.id : "all";
+};
+
+const getCodeByAirportName = (name) => {
+  let ap = airports.find(airport => airport.name === name);
+  return ap ? ap.code : "all";
+};
+
+
+export default {routes, airlines, airports, getAirlineById, getAirportByCode, getIdByAirlineName, getCodeByAirportName};
